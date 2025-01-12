@@ -148,38 +148,17 @@ def handle_message(event):
             line_bot_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
-                    messages=[TextMessage(text=f"下校開始{school_DP.strftime("%m月%d日%H:%M")}{day}です\n"
-                                        f"{kasuga_AR.strftime("%H:%M")}春日駅着\n"
-                                        f"{kasuga_DP.strftime("%H:%M")}春日駅出\n"
-                                        f"{shinjukunishiguchi_AR.strftime("%H:%M")}新宿西口着\n"
-                                        f"{keioshinjuku_AR.strftime("%H:%M")}京王新宿着\n"
+                    messages=[TextMessage(text=f"下校開始{school_DP.strftime('%m月%d日%H:%M')}{day}です\n"
+                                        f"{kasuga_AR.strftime('%H:%M')}春日駅着\n"
+                                        f"{kasuga_DP.strftime('%H:%M')}春日駅出\n"
+                                        f"{shinjukunishiguchi_AR.strftime('%H:%M')}新宿西口着\n"
+                                        f"{keioshinjuku_AR.strftime('%H:%M')}京王新宿着\n"
                                         f"京王新宿駅出\n"
-                                        f"{keioshinjuku_DP[0].strftime("%H:%M")}\n"  
-                                        f"{keioshinjuku_DP[1].strftime("%H:%M")}\n"
-                                        f"{keioshinjuku_DP[2].strftime("%H:%M")}")]
+                                        f"{keioshinjuku_DP[0].strftime('%H:%M')}\n"  
+                                        f"{keioshinjuku_DP[1].strftime('%H:%M')}\n"
+                                        f"{keioshinjuku_DP[2].strftime('%H:%M')}")]
                 )
             )
-            user_id = event.source.user_id  # ユーザーIDを取得
-            line_bot_api.push_message(
-                {
-                    "to": user_id,
-                    "messages": [
-                        TextMessage(
-                            text=f"再送信します:\n"
-                                f"下校開始 {school_DP.strftime('%m月%d日 %H:%M')} {day} です\n"
-                                f"{kasuga_AR.strftime('%H:%M')} 春日駅着\n"
-                                f"{kasuga_DP.strftime('%H:%M')} 春日駅出\n"
-                                f"{shinjukunishiguchi_AR.strftime('%H:%M')} 新宿西口着\n"
-                                f"{keioshinjuku_AR.strftime('%H:%M')} 京王新宿着\n"
-                                f"京王新宿駅出\n"
-                                f"{keioshinjuku_DP[0].strftime('%H:%M')}\n"  
-                                f"{keioshinjuku_DP[1].strftime('%H:%M')}\n"
-                                f"{keioshinjuku_DP[2].strftime('%H:%M')}"
-                        )
-                    ]
-                }
-            )
-            
         else:
             user_message = event.message.text
             try:
